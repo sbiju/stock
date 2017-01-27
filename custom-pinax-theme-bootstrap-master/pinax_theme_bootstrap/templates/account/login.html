@@ -1,0 +1,64 @@
+{% extends "site_base.html" %}
+
+{% load account_tags %}
+{% load i18n %}
+{% load staticfiles %}
+{% load bootstrap %}
+
+{% block head_title %}{% trans "Log in" %}{% endblock %}
+    {% block extra_head %}
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rebyu</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Mada:300,400,900|Raleway:100,200,900" rel="stylesheet">
+
+		<link rel="stylesheet" href='{% static "assets/css/app.css" %}' type="text/css">
+	    
+
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+		<![endif]-->
+	</head>
+    {% endblock %}
+{% block body %}
+    <div class="row" style="height: 500%; width: 25%;">
+        <div class="col-md-4">
+            <form method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %} style="margin-top: 100px;">
+                <legend>{% trans "" %}</legend>
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button type="submit" class="button" style="font-weight: bold;">{% trans "Log in" %}</button>
+                <a href="{% url "account_password_reset" %}" class="btn btn-link">{% trans "Esqueceu sua senha?" %}</a>
+            </form>
+            {% if ACCOUNT_OPEN_SIGNUP %}
+                <p class="login-signup">
+                    <small>
+                        {% trans "Ainda não possui uma conta?" %}  <strong><a href="{% urlnext 'account_signup' %}">{% trans "Cadastre-se" %}</a></strong>
+                    </small>
+                </p>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            {% include "account/_login_sidebar.html" %}
+        </div>
+    </div>
+
+{% include "footer.html" %}
+	
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#id_username').focus();
+        });
+    </script>
+{% endblock %}

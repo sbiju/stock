@@ -1,0 +1,162 @@
+{% load i18n %}
+{% load account_tags %}
+{% load staticfiles %}
+
+<!doctype html>
+	<html class="no-js" lang="pt-br">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %} Rebyu - Análise de Ações e Investimentos {% endblock %} </title>
+		<link href="https://fonts.googleapis.com/css?family=Mada:300,400,900|Raleway:100,200,900" rel="stylesheet">
+
+		<link rel="stylesheet" href='{% static "assets/css/app.css" %}' type="text/css">
+		<link rel="stylesheet" href='{% static "assets/css/tabmenu.css" %}' type="text/css">	
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+		<![endif]-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-87281004-1', 'auto');
+  ga('send', 'pageview');
+</script>
+	</head>
+
+	
+            {% block topbar_base %}
+		<header id="header">
+			<!-- mobile menu -->
+			<div class="title-bar" data-responsive-toggle="menu-mobile" data-hide-for="medium">
+				<button class="menu-icon" type="button" data-toggle></button>
+				<div class="title-bar-title">Menu</div>
+			</div>
+			<div class="top-bar show-for-small-only" id="menu-mobile">
+				<div class="top-bar-left">
+					<a href="/" title="Rebyu" class="logo">
+						<img src='{% static "assets/img/logo.png" %}' alt="Rebyu" />
+					</a>
+					<ul class="menu">
+						<li>
+							<a href="#">Ferramentas</a>
+							<ul>
+								<li>
+									<a href="http://teste.rebyu.io/pesquisa/empresas/screener/">Comparador de empresas</a>
+								</li>
+								<li>
+									<a href="http://teste.rebyu.io/pesquisa/empresas/screener/">Screener</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="assinaturas.php">Assinaturas</a>
+						</li>
+
+					</ul>
+				</div>
+				<div class="top-bar-right">
+					<div class="search">
+						Pesquisa de empresa
+						<input type="text" name="search-field" />
+					</div>
+					<div class="login">
+						<a href="http://teste.rebyu.io/account/login/">Log in</a> ou <a href="http://teste.rebyu.io/account/signup/">Cadastre-se</a>
+					</div>
+				</div>
+			</div>
+			<!-- mobile menu -->
+
+			<nav class="nav hide-for-small-only">
+				<div class="row">
+					<ul class="menu dropdown float-left" data-dropdown-menu>
+						<li class="topbar-title">
+							<a href="/" title="Rebyu">
+								<img src='{% static "assets/img/logo.png" %}' alt="Rebyu" />
+							</a>
+						</li>
+						<li>
+							<a href="#">Ferramentas</a>
+							<ul class="menu">
+								<li>
+									<a href="http://teste.rebyu.io/pesquisa/empresas/screener/">Comparador de empresas</a>
+								</li>
+								<li>
+									<a href="http://teste.rebyu.io/pesquisa/empresas/screener/">Screener</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="http://teste.rebyu.io/account/planos.html">Assinaturas</a>
+						</li>
+
+					</ul>
+					<div class="info float-right">
+<div class="search">
+    Pesquisa de empresa
+    <div class="typeahead__container" >
+        <div class="typeahead__field" style="width: 250px; font-family: arial;">
+ 
+            <span class="typeahead__query" >
+                <input class="js-typeahead-input" id="busca" name="query" type="search" placeholder="Busca empresa" autocomplete="off" style="width: 200px; font-family: arial;"/>
+            </span>
+
+<!--            <span class="typeahead__button">
+                <button type="submit">
+                 <i class="typeahead__search-icon"></i> 
+                </button>
+            </span>
+-->
+
+        </div>
+    </div>
+	<button type="submit" onclick="goToURL(); return false;" style="position: relative; z-index: 10000; top: 0px; left: -60px; "><img src='{% static "assets/img/ico-search.png" %}'></button> 
+</div>
+	
+<!--
+					<div class="search">
+							Pesquisa de empresa
+							<input type="text" name="search-field" />
+							<button type="submit"><img src='{% static "assets/img/ico-search.png" %}'></button>
+						</div>
+-->
+						<div class="login">
+							<!-- <a href="{% url "account_login" %}">Log in</a> ou <a href="{% url "account_signup" %}">Cadastre-se</a> -->
+							{% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
+						</div>
+
+					</ul>
+				</div>
+			</nav>
+		</header>
+		 {% endblock %}
+
+            {% block body_base %}
+                <section id="content_body">
+                    <div class="container">
+                        {% include "_messages.html" %}
+						
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+
+                </section>
+            {% endblock %}
+
+            {% block footer_base %}
+
+                <footer>
+                    <div class="container">
+                        
+                    </div>
+                </footer>
+            {% endblock %}
+		 
+{% block scripts %}		 
+
+{% endblock %}
+</html>

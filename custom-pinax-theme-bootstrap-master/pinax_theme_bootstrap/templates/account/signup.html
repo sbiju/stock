@@ -1,0 +1,63 @@
+{% extends "site_base.html" %}
+
+{% load account_tags %}
+{% load i18n %}
+{% load staticfiles %}
+{% load bootstrap %}
+
+{% block head_title %}{% trans "Sign up" %}{% endblock %}
+
+{% block extra_head %}
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Rebyu</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Mada:300,400,900|Raleway:100,200,900" rel="stylesheet">
+
+		<link rel="stylesheet" href='{% static "assets/css/app.css" %}' type="text/css">
+	    
+
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+		<![endif]-->
+	</head>
+{% endblock %}
+
+{% block body %}
+    <div class="row" style="padding-top: 100px !important; height: 500%; width: 25%;">
+        <div class="col-md-4">
+            <form id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                <legend>{% trans "" %}</legend>
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button type="submit" class="button" style="font-weight: bold;">{% trans "Cadastre-se" %}</button>
+            </form>
+            <p class="login-signup">
+                <small>
+                    {% trans "Possui uma conta?" %}  <strong><a href="{% urlnext 'account_login' %}">{% trans "Log in" %}</a></strong>
+                </small>
+            </p>
+        </div>
+        <div class="col-md-4">
+            {% include "account/_signup_sidebar.html" %}
+        </div>
+    </div>
+
+{% include "footer.html" %}	
+
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#id_username').focus();
+        });
+    </script>
+{% endblock %}

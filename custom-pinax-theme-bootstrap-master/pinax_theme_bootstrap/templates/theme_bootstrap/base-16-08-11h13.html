@@ -1,0 +1,277 @@
+{% load i18n %}
+{% load account_tags %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+
+        <meta charset="utf-8" />
+        <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
+        {% block viewport %}
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% endblock %}
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
+        <link href='{% static "assets/plugins/socicon/socicon.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/bootstrap-social/bootstrap-social.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/font-awesome/css/font-awesome.min.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/simple-line-icons/simple-line-icons.min.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/animate/animate.min.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN: BASE PLUGINS  -->
+        <link href='{% static "assets/plugins/revo-slider/css/settings.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/revo-slider/css/layers.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/revo-slider/css/navigation.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/cubeportfolio/css/cubeportfolio.min.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/owl-carousel/owl.carousel.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/owl-carousel/owl.theme.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/owl-carousel/owl.transitions.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/fancybox/jquery.fancybox.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/plugins/slider-for-bootstrap/css/slider.css" %}' rel="stylesheet" type="text/css" />
+        <!-- END: BASE PLUGINS -->
+        <!-- BEGIN THEME STYLES -->
+        <link href='{% static "assets/base/css/plugins.css" %}' rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/base/css/components.css" %}' id="style_components" rel="stylesheet" type="text/css" />
+        <link href='{% static "assets/base/css/themes/default.css" %}' rel="stylesheet" id="style_theme" type="text/css" />
+        <link href='{% static "assets/base/css/custom.css" %}' rel="stylesheet" type="text/css" />
+        <!-- END THEME STYLES -->
+        <link rel="shortcut icon" href="favicon.ico" /> 
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href='{% static "js/jquery.typeahead.css" %}' >
+		
+		
+<link rel="stylesheet" type="text/css" href='{% static "css/custom_css.css" %}'>		
+		
+        {% block styles %}
+		
+<style>
+    /* Extra styles */
+
+
+
+</style>
+		{% endblock %}
+
+        {% block html5shim %}
+            <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+            <!--[if lt IE 9]>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <![endif]-->
+        {% endblock %}
+
+        {% block extra_head_base %}
+            {% block extra_head %}{% endblock %}
+        {% endblock %}
+    </head>
+    <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}" {% block body_extra_attributes %}{% endblock %}>
+        <div class="{% block wrapper_class %}{% endblock %}">
+
+            {% block topbar_base %}
+
+        <header class="c-layout-header c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
+            <div class="left-container">
+            <div class="c-topbar">
+                <div class="container">
+                    <!-- BEGIN: INLINE NAV -->
+                    <nav class="c-top-menu c-pull-left">
+                        <ul class="c-links c-theme-ul">
+                            <li>
+
+                                <a href='{% url "home" %}'  class="c-logo">
+                                    <img src='{% static "assets/img/logo.png" %}'>   "src/assets/img/logo.png"
+                                </a>
+
+
+                            </li>
+							
+                            <li>
+                                <a href="#" class="top-links">FERRAMENTAS</a>
+                            </li>
+                            <li>
+                                <a href="#" class="top-links" >ASSINATURAS</a>
+                            </li>
+                            <li>
+                                <a href="http://127.0.0.1:8000/account/planos.html" class="top-links" >CONTATO</a>
+                            </li>							
+                        </ul>
+                    </nav>
+				</div>
+	        </div>
+			</div>
+                    <!-- END: INLINE NAV -->
+                    <!-- BEGIN: INLINE NAV -->
+			<div class="super-right-container">
+			<div class="search-container">
+            <div class="c-topbar">
+                <div class="container">
+                    <nav class="c-top-menu c-pull-left">
+                        <ul class="c-links c-theme-ul ">
+                            <li>
+                                <a href="#" class="top-links"> PESQUISA DE EMPRESAS </a>							
+                            </li>
+							<li style="max-width: 50%; float:right;">
+			<form class="typeahead_form" >
+                <div class="typeahead__container">
+                    <div class="typeahead__field">
+
+                        <span class="typeahead__query">
+                            <input class="js-typeahead-input"
+                                   name="q"
+								   id = "busca"
+                                   type="search"
+                                   autofocus
+                                   autocomplete="off">
+                        </span>
+                        <span class="typeahead__button">
+                            <button type="submit" class="btn btn-default" onclick="goToURL(); return false;">B</button>
+                        </span>
+
+                    </div>
+                </div>
+        
+            </form>
+
+							
+							</li>
+
+                        </ul>
+
+					</nav>
+
+				</div>
+
+
+			</div>
+
+			</div>
+
+			<div class="right-container">
+            <div class="c-topbar">
+                <div class="container">
+                    <nav class="c-top-menu c-pull-left">			
+                        <ul class="c-links c-theme-ul ">
+                            <li>
+                                <a href="{% url "account_signup" %}" class="top-links" style="color: rgba(0,0,255,1);">{% trans "Cadastre-se" %}</a>
+                            </li>
+                            <li class="c-divider"> ou </li>
+                            <li>
+                                <a href="{% url "account_login" %}" class="top-links" style="color: rgba(0,0,255,1);">{% trans "Log in" %}</a>
+                            </li>
+
+
+                        </ul>
+                        <ul class="c-ext c-theme-ul">
+<!--                            <li class="c-lang dropdown c-last">
+                                <a href="#">en</a>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li class="active">
+                                        <a href="#">English</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">German</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Espaniol</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Portugise</a>
+                                    </li>
+                                </ul>
+                            </li>
+-->
+                            <li class="c-search hide">
+                                <!-- BEGIN: QUICK SEARCH -->
+                                <form action="#">
+                                    <input type="text" name="query" placeholder="search..." value="" class="form-control" autocomplete="off">
+                                    <i class="fa fa-search"></i>
+                                </form>
+                                <!-- END: QUICK SEARCH -->
+                            </li>
+                        </ul>
+                    </nav>
+				</div>
+	        </div>
+			</div>
+			</div>
+                    <!-- END: INLINE NAV -->
+                </div>
+        </header>
+   
+
+            {% endblock %}
+
+            {% block body_base %}
+                <section id="content_body">
+                    <div class="container">
+                        {% include "_messages.html" %}
+						
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+                </section>
+            {% endblock %}
+
+            {% block footer_base %}
+                <hr />
+                <footer>
+                    <div class="container">
+                        {% block footer %}{% endblock %}
+                    </div>
+                </footer>
+            {% endblock %}
+        </div>
+
+        {% block scripts %}
+		
+		<!-- Scripts do autocompletador typeahead -->
+<script>
+
+$.typeahead({
+    input: '.js-typeahead-input',
+    minLength: 1,
+    maxItem: 15,
+    order: "asc",
+    hint: true,
+    accent: true,
+    searchOnFocus: true,
+    backdrop: {
+        "background-color": "#3879d9",
+        "opacity": "0.1",
+        "filter": "alpha(opacity=10)"
+    },
+    source: {
+           url: 'autocomplete/'
+		},
+    debug: true
+});
+ 
+</script>
+
+
+<script type="text/javascript">
+    function goToURL() {
+      location.href = 'http://127.0.0.1:8000/pesquisa/empresas/' + $("#busca").val();
+    };
+</script>
+
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src='{% static "js/jquery.typeahead.js" %}' ></script>
+
+<!-- FIM DOS SCRIPTS DO TYPEAHEAD -->
+
+		
+		{% endblock %}
+
+        {% block theme_script %}
+            <script src='{% static "pinax/js/theme.js" %}'></script>
+        {% endblock %}
+
+        {% block extra_body_base %}
+            {% block extra_body %}{% endblock %}
+        {% endblock %}
+    </body>
+</html>
